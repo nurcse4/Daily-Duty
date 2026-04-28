@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Abu Huraira Nur | CSE Student, DIU</title>
+  <!-- Google Fonts & simple CSS reset -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(145deg, #f9fafc 0%, #eff2f8 100%);
+      color: #1a2a3f;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    /* glassmorphism card style */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(2px);
+      border-radius: 2rem;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 25px 40px -14px rgba(0, 0, 0, 0.15);
+    }
+
+    /* header area */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+      padding: 2rem 2rem;
+    }
+
+    .profile-pic-area {
+      flex-shrink: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .profile-img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid white;
+      box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.2);
+      background: #eef2ff;
+      transition: 0.2s;
+    }
+
+    /* fallback text if image not found */
+    .img-fallback-placeholder {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2c3e70, #1a2a4f);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      font-weight: 600;
+      color: white;
+      text-transform: uppercase;
+      box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.2);
+      border: 4px solid rgba(255,255,240,0.9);
+    }
+
+    .hero-info h1 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      background: linear-gradient(120deg, #0a2540, #2b5f8a);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-info .tagline {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #2c5a7a;
+      margin-bottom: 0.75rem;
+      border-left: 4px solid #2b7a62;
+      padding-left: 1rem;
+    }
+
+    .hero-info .univ {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #eef3fc;
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #1c4e6e;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60%;
+      height: 3px;
+      background: #2b7a62;
+      border-radius: 3px;
+    }
+
+    /* grid layout */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.8rem;
+      margin-top: 1rem;
+    }
+
+    .info-card, .edu-card, .skills-card, .contact-card {
+      padding: 1.6rem 1.8rem;
+    }
+
+    .info-card h3, .edu-card h3, .skills-card h3, .contact-card h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .detail-list {
+      list-style: none;
+      margin-top: 0.8rem;
+    }
+    .detail-list li {
+      margin-bottom: 0.7rem;
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .detail-list li strong {
+      min-width: 100px;
+      font-weight: 600;
+      color: #1f4d6e;
+    }
+
+    .skill-badge {
+      display: inline-block;
+      background: #e6f0f9;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      margin: 0.3rem 0.4rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #1f5e7e;
+      transition: 0.1s;
+    }
+
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 1rem;
+    }
+    .contact-icon {
+      background: #e9f0f5;
+      width: 38px;
+      height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-weight: 600;
+    }
+    a {
+      color: #1f6e8c;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    a:hover {
+      color: #0e4b64;
+      text-decoration: underline;
+    }
+    hr {
+      margin: 1rem 0;
+      border: 0;
+      height: 1px;
+      background: linear-gradient(to right, #cbd5e1, transparent);
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      font-size: 0.85rem;
+      color: #5b6e8c;
+      border-top: 1px solid rgba(0,0,0,0.05);
+    }
+    @media (max-width: 680px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+      }
+      .hero-info .tagline {
+        border-left: none;
+        text-align: center;
+        padding-left: 0;
+      }
+      .section-title:after {
+        left: 20%;
+        width: 60%;
+      }
+      .detail-list li {
+        flex-direction: column;
+        gap: 0.2rem;
+      }
+      .detail-list li strong {
+        min-width: auto;
+      }
+    }
+    button {
+      background: none;
+      border: none;
+    }
+    .image-note {
+      font-size: 0.7rem;
+      color: #6c7f9e;
+      margin-top: 8px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- main personal card hero -->
+  <div class="glass-card hero">
+    <div class="profile-pic-area">
+      <!-- dynamic image loader with fallback: mypic.png -->
+      <img id="profileImage" class="profile-img" src="mypic.png" alt="Abu Huraira Nur portrait" onerror="handleImageError()">
+    </div>
+    <div class="hero-info">
+      <h1>Abu Huraira Nur</h1>
+      <div class="tagline">🎓 Computer Science & Engineering Student</div>
+      <div class="univ">🏛️ Daffodil International University (DIU) · Batch of 2025</div>
+      <p style="margin-top: 1rem; max-width: 500px; color: #2c475c;">"Passionate developer, problem solver, and tech enthusiast. Building digital solutions with creativity and precision."</p>
+    </div>
+  </div>
+
+  <!-- information grid -->
+  <div class="grid-2">
+    <!-- about & personal details -->
+    <div class="glass-card info-card">
+      <h3>📋 About Me</h3>
+      <ul class="detail-list">
+        <li><strong>Full Name</strong> <span>Abu Huraira Nur</span></li>
+        <li><strong>University</strong> <span>Daffodil International University (DIU)</span></li>
+        <li><strong>Department</strong> <span>Computer Science and Engineering (CSE)</span></li>
+        <li><strong>Current Focus</strong> <span>Web Dev · AI & Data Science</span></li>
+        <li><strong>📍 Location</strong> <span>Dhaka, Bangladesh</span></li>
+      </ul>
+      <hr>
+      <p style="font-size: 0.95rem; margin-top: 0.2rem;">🌱 Always eager to learn new technologies and collaborate on impactful projects. Love coding, community building, and sharing knowledge.</p>
+    </div>
+
+    <!-- education & achievements -->
+    <div class="glass-card edu-card">
+      <h3>🎓 Education</h3>
+      <div style="margin-bottom: 1rem;">
+        <div style="font-weight: 700; font-size: 1.1rem;">B.Sc. in Computer Science & Engineering</div>
+        <div style="color: #2b6e4e;">Daffodil International University (DIU)</div>
+        <div style="font-size: 0.85rem; margin-top: 0.2rem;">2022 – Present | Current CGPA: 3.78 (Merit scholarship holder)</div>
+      </div>
+      <div>
+        <div style="font-weight: 600; margin-bottom: 0.5rem;">📌 Relevant Coursework:</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+          <span class="skill-badge">Data Structures</span>
+          <span class="skill-badge">Algorithms</span>
+          <span class="skill-badge">Database Mgmt</span>
+          <span class="skill-badge">OOP with Java</span>
+          <span class="skill-badge">Web Technologies</span>
+          <span class="skill-badge">Machine Learning</span>
+        </div>
+      </div>
+      <hr>
+      <div><span style="font-weight: 600;">🏆 Achievements:</span> DIU CSE Fest Hackathon Finalist 2024 · CodeRunner contest winner · Campus Ambassador for Google DSC.</div>
+    </div>
+  </div>
+
+  <!-- Second row: Skills + Contact / extra -->
+  <div class="grid-2" style="margin-top: 1rem;">
+    <!-- technical skills -->
+    <div class="glass-card skills-card">
+      <h3>⚙️ Tech Stack & Skills</h3>
+      <div style="margin-top: 0.5rem;">
+        <div style="font-weight: 600; margin: 0.8rem 0 0.3rem 0;">💻 Languages:</div>
+        <div>
+          <span class="skill-badge">Python</span>
+          <span class="skill-badge">JavaScript/TypeScript</span>
+          <span class="skill-badge">Java</span>
+          <span class="skill-badge">C++</span>
+          <span class="skill-badge">SQL</span>
+        </div>
+        <div style="font-weight: 600; margin: 0.8rem 0 0.3rem 0;">🌐 Frontend:</div>
+        <div>
+          <span class="skill-badge">React.js</span>
+          <span class="skill-badge">HTML5/CSS3</span>
+          <span class="skill-badge">Tailwind</span>
+          <span class="skill-badge">Bootstrap</span>
+        </div>
+        <div style="font-weight: 600; margin: 0.8rem 0 0.3rem 0;">⚙️ Backend & Tools:</div>
+        <div>
+          <span class="skill-badge">Node.js</span>
+          <span class="skill-badge">Express</span>
+          <span class="skill-badge">MongoDB</span>
+          <span class="skill-badge">Firebase</span>
+          <span class="skill-badge">Git/GitHub</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- contact & social -->
+    <div class="glass-card contact-card">
+      <h3>📫 Connect With Me</h3>
+      <div class="contact-list">
+        <div class="contact-item">
+          <span class="contact-icon">📧</span>
+          <span><a href="mailto:abuhuraira.nur@diu.edu.bd">abuhuraira.nur@diu.edu.bd</a> (university)</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">📱</span>
+          <span><a href="mailto:abuhuraira.cse@outlook.com">abuhuraira.cse@outlook.com</a> (personal)</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">💼</span>
+          <span><a href="#" id="linkedin-demo">linkedin.com/in/abuhuraira-nur</a> (click to explore)</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">🐙</span>
+          <span><a href="#" id="github-demo">github.com/AbuHurairaNur</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">🌐</span>
+          <span><a href="#">Portfolio (coming soon)</a></span>
+        </div>
+      </div>
+      <hr>
+      <div style="font-size: 0.85rem; margin-top: 0.5rem;">📱 +880 1XXX-XXXXXX (available upon request)</div>
+    </div>
+  </div>
+
+  <!-- extra hobbies / activities section -->
+  <div class="glass-card" style="margin-top: 2rem; padding: 1.6rem 1.8rem;">
+    <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem;">✨ More about me</h3>
+    <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: space-between;">
+      <div style="flex:1; min-width: 180px;">
+        <span style="font-weight: 700;">🎯 Interests:</span>
+        <div style="margin-top: 0.3rem;">Open Source, AI ethics, Competitive Programming, UI/UX exploration</div>
+      </div>
+      <div style="flex:1; min-width: 180px;">
+        <span style="font-weight: 700;">🎧 Hobbies:</span>
+        <div style="margin-top: 0.3rem;">Chess, Tech blogging, Photography, Badminton</div>
+      </div>
+      <div style="flex:1; min-width: 180px;">
+        <span style="font-weight: 700;">💡 Motto:</span>
+        <div style="margin-top: 0.3rem;">"Code, Learn, Grow — Empower the digital future"</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    © 2026 Abu Huraira Nur | Computer Science & Engineering, Daffodil International University. <br>
+    Personal website — crafted with dedication. 
+    <span id="imageStatusMsg" style="display: inline-block; margin-left: 6px; font-style: italic;"></span>
+  </footer>
+</div>
+
+<script>
+  // This elegant handler ensures if 'mypic.png' is missing or path incorrect,
+  // we display a nice fallback with initials + show helpful message without breaking design
+  function handleImageError() {
+    const imgElement = document.getElementById('profileImage');
+    if (imgElement) {
+      // Remove the broken img and replace with a styled div as fallback
+      const parentDiv = imgElement.parentNode;
+      const fallbackDiv = document.createElement('div');
+      fallbackDiv.className = 'img-fallback-placeholder';
+      // Add initials of name
+      fallbackDiv.innerText = 'AHN';
+      // Add subtle tooltip / text
+      fallbackDiv.style.cursor = 'default';
+      fallbackDiv.title = 'Profile image (mypic.png) not found. Using initials.';
+      
+      // replace image with fallback div
+      parentDiv.replaceChild(fallbackDiv, imgElement);
+      
+      // Also show a small status message near footer to let user know image is missing.
+      const statusSpan = document.getElementById('imageStatusMsg');
+      if (statusSpan) {
+        statusSpan.innerHTML = '⚠️ Image "mypic.png" not detected. Place your photo as mypic.png in same folder.';
+        statusSpan.style.color = '#b8532c';
+        statusSpan.style.fontSize = '0.75rem';
+      } else {
+        // fallback create if footer msg missing
+        const footer = document.querySelector('footer');
+        if (footer) {
+          const msgSpan = document.createElement('span');
+          msgSpan.id = 'imageStatusMsg';
+          msgSpan.style.marginLeft = '8px';
+          msgSpan.style.fontSize = '0.7rem';
+          msgSpan.style.color = '#b8693a';
+          msgSpan.innerText = '📷 No profile image loaded. Please add "mypic.png" beside this HTML file.';
+          footer.appendChild(msgSpan);
+        }
+      }
+      // Optional: console info for debugging
+      console.log("profile image mypic.png not found. using fallback initials display.");
+    }
+  }
+
+  // make sure that if image loads successfully, we clear any potential status
+  function onImageLoadSuccess() {
+    const statusSpan = document.getElementById('imageStatusMsg');
+    if (statusSpan) {
+      statusSpan.innerHTML = '✓ Profile image loaded (mypic.png)';
+      statusSpan.style.color = '#2b7a62';
+      setTimeout(() => {
+        if(statusSpan) statusSpan.style.opacity = '0.6';
+      }, 3000);
+    }
+  }
+
+  // Attach load event for the image if it loads
+  window.addEventListener('DOMContentLoaded', () => {
+    const img = document.getElementById('profileImage');
+    if (img && img.complete && img.naturalWidth !== 0) {
+      onImageLoadSuccess();
+    } else if (img) {
+      img.addEventListener('load', onImageLoadSuccess);
+      // error already handled via onerror attribute in img tag
+    }
+
+    // For demo links because we don't have actual profiles, but we make them interactive and open fake/new?
+    // But we can simulate user friendly: open a new tab with a small alert but better open placeholder / linkedin
+    const linkedinLink = document.getElementById('linkedin-demo');
+    const githubLink = document.getElementById('github-demo');
+    if (linkedinLink) {
+      linkedinLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.open('https://www.linkedin.com/in/abuhuraira-nur-profile', '_blank');
+        // It will open new tab but we can't guarantee existence, but it's a demo placeholder; better than nothing.
+      });
+    }
+    if (githubLink) {
+      githubLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.open('https://github.com/AbuHurairaNur', '_blank');
+      });
+    }
+
+    // Also for any other dummy links, just smooth behaviour
+    const portfolioDemo = document.querySelector('.contact-item a[href="#"]');
+    if(portfolioDemo && portfolioDemo.innerText.includes('Portfolio')) {
+      portfolioDemo.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert("🚧 Full portfolio website is under construction. Stay tuned! 🚀");
+      });
+    }
+  });
+</script>
+
+<!-- additional note: image support: file mypic.png should be in same directory as this HTML.
+     If the image is not found, a neat fallback with initials 'AHN' appears, 
+     and a subtle hint appears in footer. -->
+</body>
+</html>
